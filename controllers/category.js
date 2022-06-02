@@ -25,7 +25,7 @@ const createNewRoomCategory = (req, res) => {
 
       res
         .status(201)
-        .json({ success: true, message: "Category Created", category: result });
+        .json({ success: true, message: "Category Created", category: result[0] });
     });
   });
 };
