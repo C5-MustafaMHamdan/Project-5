@@ -73,9 +73,9 @@ export const SigninPage = () => {
           />
           <br />
           <button
-          /*     onClick={(e) => {
+              onClick={(e) => {
               login(e);
-            }} */
+            }} 
           >
             Login
           </button>
