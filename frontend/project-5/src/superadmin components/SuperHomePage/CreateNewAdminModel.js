@@ -34,6 +34,7 @@ const [message , setMessage] =useState("")
   return (
     <>
       {/* the onclick event that we add so that if the user click outside the model anywhere in the window it will close the model and we can remove this part if we want to */}
+      <div className="super-admin-modal">
       <div className="darkBG" onClick={() => setIsOpenAdmin(false)} />
       <div className="centered">
         <div className="modal">
@@ -89,7 +90,7 @@ const [message , setMessage] =useState("")
               //   updateCategoryFun(id);
               //   setIsOpen(false);
               // }}
-              className="deleteBtn"
+              className="create-admin-Btn"
               //onClick={createNewAdmin}
               onClick={(e)=>{createNewAdmin(e);}}
             >
@@ -109,6 +110,7 @@ const [message , setMessage] =useState("")
 
           {/* // ... */}
         </div>
+      </div>
       </div>
     </>
   );
