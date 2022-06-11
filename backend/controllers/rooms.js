@@ -385,7 +385,7 @@ const getAllMyRooms = async (req, res) => {
     rowsMyGroupRooms.concat(allMyPrivateRoomData);
 
   if (allMyPrivateAndGroupRooms.length === 0) {
-    return res.status(404).json({
+    return res.status(200).json({
       success: false,
       message: "You Need To Join A Room Or Create A New Room",
     });
@@ -705,6 +705,31 @@ const getAllMyCreatedRoom = (req, res) => {
   });
 };
 
+/////////////getAllUsersRoomsRelations//////////////////////
+
+const getAllUsersRoomsRelations = (req, res) => {
+  const command = `SELECT * FROM users_rooms `;
+
+  connection.query(command, (err, result) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ success: false, message: "Server Error", err: err.message });
+    }
+    if (!result.length) {
+      return res.status(200).json({
+        success: false,
+        message: "No Relation Were Yet Created",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "All The Relation of The Rooms With the Users",
+      rooms: result,
+    });
+  });
+};
+
 module.exports = {
   createNewChatRoom,
   createNewGroupRoom,
@@ -724,4 +749,5 @@ module.exports = {
   addUserToTheRoom,
   getAllRoomsForCategory,
   getAllMyCreatedRoom,
+  getAllUsersRoomsRelations,
 };
