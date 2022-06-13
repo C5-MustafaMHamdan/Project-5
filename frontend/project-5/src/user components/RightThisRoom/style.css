@@ -1,3 +1,64 @@
+
+.rightSideHomePage {
+  background-color: rgb(54, 57, 63);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centerSide {
+  margin-top: 30px;
+  height: 600px;
+  width: 95%;
+  background-color: red;
+}
+
+.buttomSide {
+  display: flex;
+  margin-top: 10px;
+  height: 50px;
+  width: 95%;
+  background-color: rgb(64,68,75);
+  border-radius: 5px;
+}
+
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+.sendIcon {
+  height: 30px;
+  width: 30px;
+  color: rgb(154,157,161);
+}
+
+.sendIcon:hover {
+  color: rgb(255, 255, 226);
+}
+
+.InputFelid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+.inputMessage {
+  height: 30px;
+  width: 60vw;
+  border: none;
+  background-color: rgb(64,68,75);
+  font-size: 17px;
+  outline: none;
+  caret-color: rgb(187, 187, 184);
+  color: rgb(181, 183, 186)
+}
+
+.inputMessage::placeholder {
+  color: rgb(129, 129, 127);
+}
+
 .room-navbar {
   display: flex;
   width: 100%;
@@ -9,15 +70,16 @@
 
 .roomName-tow {
   display: flex;
-  width: 200px;
+  width: 500px;
   align-items: center;
 }
 
 .nameRoom {
   font-size: 30px;
   margin-left: 20px;
-  cursor: pointer;
   color: #b6b7bb;
+  cursor: default;
+
 }
 
 .groupIcon {
@@ -110,8 +172,6 @@
   visibility: visible;
   opacity: 1;
 }
-
-
 
 /* @src/components/Modal.module.css ////////////////////////////////////////////////////////////////////////////////////// */
 

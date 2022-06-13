@@ -19,6 +19,8 @@ import { RiUserFollowFill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import { MdSystemUpdateAlt } from "react-icons/md";
 import { MdGroup } from "react-icons/md";
+import { AiFillPlusCircle } from "react-icons/ai";
+
 
 //since we used export directly then when we import we have to add the {} or an error will occur
 export const RightThisRoom = () => {
@@ -120,12 +122,25 @@ export const RightThisRoom = () => {
                       }}
                     />
                   </div>
+                  
                 </>
               )}
             </div>
           </div>
-          <div className="centerSide"></div>
-          <div className="buttomSide"></div>
+
+          <div className="centerSide">
+            <h1>center</h1>
+          </div>
+          <div className="buttomSide">
+            <div className="sendButton">
+              <AiFillPlusCircle className="sendIcon"/>
+            </div>
+            <div className="InputFelid">
+              <input className="inputMessage" type={"text"} placeholder={`Message The ${room.name}`} />
+            </div>
+            <div className="Impoges"></div>
+          </div>
+
           {isOpenUpdate && (
             <UpdateRoomModel
               setIsOpenUpdate={setIsOpenUpdate}
