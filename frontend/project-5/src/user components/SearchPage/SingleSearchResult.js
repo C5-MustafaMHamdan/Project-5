@@ -127,7 +127,8 @@ const SingleSearchResult = (props) => {
             <img className="result-image" src={search.profile_image} />
 
             <h1>{search.username}</h1>
-            <p>this is user</p>
+            <div>
+            <p className="this-is-user">User</p></div>
 
             {rooms?.forEach((element) => {
               if (
@@ -167,9 +168,9 @@ const SingleSearchResult = (props) => {
               {" "}
               <h1>{search.name}</h1>
             </div>
-            <div className="room-type">
+            <div>
               {" "}
-              <p>Group</p>
+              <p className="this-is-room">Group Room</p>
             </div>
 
             {userRoomRelation?.forEach((element) => {
