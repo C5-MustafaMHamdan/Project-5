@@ -17,11 +17,15 @@ import FollowRequestList from "./FollowRequestList";
 import { TbClipboardList } from "react-icons/tb";
 import { HiUserAdd } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
-import { MdSystemUpdateAlt } from "react-icons/md";
 import { MdGroup } from "react-icons/md";
-import { AiFillPlusCircle } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import { IoMdCreate } from "react-icons/io";
+import { TbFileUpload } from "react-icons/tb";
+import { MdAddPhotoAlternate } from "react-icons/md";
+import { ImExit } from "react-icons/im";
+import { IoCreateOutline } from "react-icons/io5";
+import { AiFillFile } from "react-icons/ai";
+import { AiOutlineDownload } from "react-icons/ai";
 
 //since we used export directly then when we import we have to add the {} or an error will occur
 export const RightThisRoom = () => {
@@ -89,7 +93,7 @@ export const RightThisRoom = () => {
                 <>
                   <div className="toolTip">
                     <span className="toolTipText">Update Room</span>
-                    <MdSystemUpdateAlt
+                    <IoCreateOutline
                       className="updateRoom"
                       onClick={() => {
                         setIsOpenUpdate(true);
@@ -123,6 +127,15 @@ export const RightThisRoom = () => {
                       }}
                     />
                   </div>
+                  <div className="toolTip">
+                    <span className="toolTipText">Leave Room</span>
+                    <ImExit
+                      className="FollowRequestList"
+                      onClick={() => {
+                        setIsOpenFollowRequest(true);
+                      }}
+                    />
+                  </div>
                 </>
               )}
             </div>
@@ -145,27 +158,71 @@ export const RightThisRoom = () => {
                 <div className="messageTextContainer">
                   <span className="messageText">
                     asd asd asd asd a asd asd asd sdfag adf g asdf a asdg asdf
-                    sadg asdf sadg asdf asdf asdf asdf asdf asdf asdf asdf as
-                    asdf asdf asdf asdf sadf{" "}
+                    sadg asdf sadg
                   </span>
                 </div>
               </div>
               <div className="menuContainer">
-                <div className="toolTip">
-                  <span className="toolTipText">Delete Message</span>
-                  <MdDelete className="deleteMessage" />
+                <span className="toolTipText">Delete Message</span>
+                <MdDelete className="deleteMessage" />
+                <span className="toolTipText">Update Message</span>
+                <IoMdCreate className="updateRoom" />
+              </div>
+            </div>
+            <div className="messagesDocument">
+              <div className="sendImage">
+                <img
+                  className="sendImageProfile"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkTQ8DFOgujidIRil33r2QnSZ2Y_ZHahrUlw&usqp=CAU"
+                  alt="user image"
+                />
+              </div>
+              <div className="sendName">
+                <div className="userInfoContainer">
+                  <p className="userNameSend">Mosa saleh</p>
+                  <span className="date">data</span>
                 </div>
-                <div className="toolTip">
-                  <span className="toolTipText">Update Message</span>
-                  <IoMdCreate className="updateRoom" />
+                <div className="messageTextContainerDocument">
+                  <AiFillFile className="documentIcon" />
+                  <a href="#" className="">
+                    mosa SAleh
+                  </a>
+                  <div className="documentcontainer">
+                    <MdDelete className="deleteDocumentMessage" />
+
+                    <AiOutlineDownload className="DownloadDocumentMessage" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="messagesImage">
+              <div className="sendImage">
+                <img
+                  className="sendImageProfile"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkTQ8DFOgujidIRil33r2QnSZ2Y_ZHahrUlw&usqp=CAU"
+                  alt="user image"
+                />
+              </div>
+              <div className="sendName">
+                <div className="userInfoContainerImage">
+                  <p className="userNameSend">Mosa saleh</p>
+                  <span className="dateImage">data</span>
+                  <div className="iconContainer">
+                    <MdDelete className="deleteDocumentMessage" />
+                    <AiOutlineDownload className="DownloadDocumentMessage" />
+                  </div>
+                </div>
+                <div className="messageTextContainerDocument">
+                  <img
+                    className="imageDocument"
+                    src="https://techcrunch.com/wp-content/uploads/2021/05/Discord_IAP_KeyVisuals_Header_02.jpeg"
+                  />
+                  <div className="documentcontainer"></div>
                 </div>
               </div>
             </div>
           </div>
           <div className="buttomSide">
-            <div className="sendButton">
-              <AiFillPlusCircle className="sendIcon" />
-            </div>
             <div className="InputFelid">
               <input
                 className="inputMessage"
@@ -173,8 +230,24 @@ export const RightThisRoom = () => {
                 placeholder={`Message The ${room.name}`}
               />
             </div>
-            <div className="sendReactIcon">
-              <IoSend className="sendIconTow" />
+            <div className="buttomIcons">
+              <div className="sendReactIcon">
+                <IoSend className="sendIconTow" />
+              </div>
+              <div className="toolTipButtom">
+                <span className="toolTipTextBottom">Upload File</span>
+                <input type={"file"} className="update-account" id="file" />
+                <label htmlFor="file">
+                  <TbFileUpload className="sendIconTow" />
+                </label>
+              </div>
+              <div className="toolTipButtom">
+                <span className="toolTipTextBottom">Upload Image</span>
+                <input type={"image"} className="update-account" id="file" />
+                <label htmlFor="file">
+                  <MdAddPhotoAlternate className="sendIconTow" />
+                </label>
+              </div>
             </div>
           </div>
 
