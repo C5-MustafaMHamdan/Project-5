@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
+import fileDownload from "js-file-download";
 
 //importing css
 import "./style.css";
@@ -202,6 +203,22 @@ export const RightThisRoom = () => {
       .catch((err) => console.log(err));
   };
 
+  //this function is for downloading the cv
+  const downloadFile = (fileUrl) => {
+    let filePath = fileUrl;
+    axios
+      .get(`${filePath}`, {
+        responseType: "blob",
+      })
+      .then((res) => {
+        let filename = filePath.replace(/^.*[\\\/]/, "");
+        let fileExtension;
+        fileExtension = filePath.split(".");
+        fileExtension = fileExtension[fileExtension.length - 1];
+        fileDownload(res.data, `${filename}.${fileExtension}`);
+      });
+  };
+
   return (
     <>
       {!errMessage ? (
@@ -253,9 +270,9 @@ export const RightThisRoom = () => {
                   <div className="toolTip">
                     <span className="toolTipText">Leave Room</span>
                     <ImExit
-                      className="FollowRequestList"
+                      className="leaveIcon"
                       onClick={() => {
-                        setIsOpenFollowRequest(true);
+                        // setIsOpenFollowRequest(true);
                       }}
                     />
                   </div>
@@ -319,7 +336,7 @@ export const RightThisRoom = () => {
                       {element.user_id === user.id && (
                         <div className="menuContainer">
                           <IoMdCreate
-                            className="updateRoom"
+                            className="updateMessage"
                             onClick={() => {
                               setUpdateInput(!updateInput);
                               console.log(index);
@@ -339,35 +356,41 @@ export const RightThisRoom = () => {
                   )}
                   {element.message_image && (
                     <div className="messagesImage">
-                      <div className="sendImage">
-                        <img
-                          className="sendImageProfile"
-                          src={element.profile_image}
-                          alt="user profile image"
-                        />
-                      </div>
-
                       <div className="sendName">
                         <div className="userInfoContainerImage">
-                          <p className="userNameSend"> {element.username}</p>
-
-                          <span className="dateImage">
-                            Date:
-                            {new Date(element.created_at)
-                              .toString()
-                              .substring(4, 10) +
-                              "-" +
-                              new Date(element.created_at)
+                          <div>
+                            <img
+                              className="sendImageProfile"
+                              src={element.profile_image}
+                              alt="user profile image"
+                            />
+                          </div>
+                          <div>
+                            <p className="userNameSend"> {element.username}</p>
+                          </div>
+                          <div className="dateImageDiv">
+                            <span className="dateImage">
+                              Date:
+                              {new Date(element.created_at)
                                 .toString()
-                                .substring(16, 21)}
-                          </span>
-
+                                .substring(4, 10) +
+                                "-" +
+                                new Date(element.created_at)
+                                  .toString()
+                                  .substring(16, 21)}
+                            </span>
+                          </div>
                           <div className="iconContainer">
-                            <AiOutlineDownload className="DownloadDocumentMessage" />
+                            <AiOutlineDownload
+                              className="DownloadDocumentMessage"
+                              onClick={() => {
+                                downloadFile(element.message_image);
+                              }}
+                            />
 
                             {element.user_id === user.id && (
                               <MdDelete
-                                className="deleteDocumentMessage"
+                                className="deleteMessage"
                                 onClick={() => {
                                   deleteMessage(element.id, room.id);
                                 }}
@@ -421,11 +444,16 @@ export const RightThisRoom = () => {
                           </a>
 
                           <div className="documentcontainer">
-                            <AiOutlineDownload className="DownloadDocumentMessage" />
+                            <AiOutlineDownload
+                              className="DownloadDocumentMessage"
+                              onClick={() => {
+                                downloadFile(element.document);
+                              }}
+                            />
 
                             {element.user_id === user.id && (
                               <MdDelete
-                                className="deleteDocumentMessage"
+                                className="deleteMessage"
                                 onClick={() => {
                                   deleteMessage(element.id, room.id);
                                 }}
