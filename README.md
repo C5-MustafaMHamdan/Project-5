@@ -70,12 +70,11 @@ Now app ready to use
 
 ## 🎈 Usage <a name="usage"></a>
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Our Web site is divided by tow parts the first part for the employee and the second part to help them mange the categories of the room and  this part is only   available for them.
 
-Ex.
-- You don't have to register to navigate our web app
-- You can click on the **Home** tab provided in the navigation bar to view the home section
-- You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account 
+- 1 the Sign in  page: you can only sign in employee account ad this is the only way to enter the employee section 
+ 
+<img width=200px height=200px src="assest/login superadmin.png" alt="Diagram"></a>
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
