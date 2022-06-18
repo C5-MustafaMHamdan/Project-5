@@ -27,6 +27,7 @@ const LeftMyRooms = () => {
   console.log("all my rooms", rooms);
 
   const [message, setMessage] = useState("");
+  const [noRooms, setNoRooms] = useState("");
   const navigate = useNavigate();
 
   //============================================================
@@ -38,9 +39,16 @@ const LeftMyRooms = () => {
         },
       })
       .then((result) => {
+        setNoRooms("");
         dispatch(getAllMyRooms(result.data.rooms));
-        if (result.data.message === "No Room Were Created Yet")
+        if (result.data.message === "No Room Were Created Yet") {
           setMessage(result.data.message);
+        }
+        if (
+          result.data.message === "You Need To Join A Room Or Create A New Room"
+        ) {
+          setNoRooms(result.data.message);
+        }
       });
   };
 
@@ -81,32 +89,35 @@ const LeftMyRooms = () => {
               {rooms &&
                 rooms.map((element) => {
                   return (
-                    <>
-                      <div
-                        className="roomInfoContainer"
-                        key={element.id}
-                        onClick={() => {
-                          navigate(`/rooms/${element.id}`);
-                        }}
-                      >
-                        <img
-                          className="roomImage"
-                          src={element.room_image}
-                          alt="room-image"
-                        />
+                    <div
+                      className="roomInfoContainer"
+                      key={element.id}
+                      onClick={() => {
+                        navigate(`/rooms/${element.id}`);
+                      }}
+                    >
+                      <img
+                        className="roomImage"
+                        src={element.room_image}
+                        alt="room-image"
+                      />
 
-                        <p className="roomName">#{element.name}</p>
-                      </div>
-                    </>
+                      <p className="roomName">#{element.name}</p>
+                    </div>
                   );
                 })}
             </div>
 
+            {noRooms != "" && (
+              <p className="no-room-created-yet">
+                You Need To Join A Room Or Create A New Room
+              </p>
+            )}
             {message && <p>{message}</p>}
           </div>
           <div className="rightSideHomePage">
             {/* the reason that i added this part because the RightThisRoom is nested route of this route   */}
-            
+
             <Routes>
               <Route path="/:id" element={<RightThisRoom />} />
             </Routes>
