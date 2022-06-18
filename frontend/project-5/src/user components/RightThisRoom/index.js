@@ -143,7 +143,7 @@ export const RightThisRoom = () => {
     });
   };
 
-  const sendFile = (fileURL) => {
+  const sendFile = (fileURL, fileName) => {
     console.log("the file url is this one", fileURL);
     const messageContent = {
       room_id: room.id,
@@ -151,6 +151,7 @@ export const RightThisRoom = () => {
         user_id: user.id,
         username: user.username,
         document: fileURL,
+        document_name: fileName,
       },
     };
 
@@ -201,7 +202,8 @@ export const RightThisRoom = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        sendFile(data.url);
+        console.log("all the data are", data.original_filename);
+        sendFile(data.url, data.original_filename);
       })
       .catch((err) => console.log(err));
   };
@@ -303,7 +305,7 @@ export const RightThisRoom = () => {
                     <ImExit
                       className="leaveIcon"
                       onClick={() => {
-                       setIsOpenLeaveRoom(true);
+                        setIsOpenLeaveRoom(true);
                       }}
                     />
                   </div>
@@ -350,6 +352,7 @@ export const RightThisRoom = () => {
                               }}
                             >
                               <input
+                                className="updateMessageField"
                                 defaultValue={element.description}
                                 onChange={(e) =>
                                   setUpdatedMessage(e.target.value)
@@ -430,7 +433,7 @@ export const RightThisRoom = () => {
                           </div>
                         </div>
 
-                        <div className="messageTextContainerDocument">
+                        <div className="messageTextContainerImage">
                           <img
                             className="imageDocument"
                             src={element.message_image}
@@ -470,8 +473,7 @@ export const RightThisRoom = () => {
                           <AiFillFile className="documentIcon" />
 
                           <a href="#" className="document-name">
-                            {"this is a old File File file" +
-                              "element.document"}
+                            {element.document_name}
                           </a>
 
                           <div className="documentcontainer">
